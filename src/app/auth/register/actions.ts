@@ -17,7 +17,7 @@ export async function signUp(formData: FormData) {
 
     const validatedFields = SignupFormSchema.parse(rawData);
 
-    const response = await fetch(`${url}/auth/signup`, {
+    const response = await fetch(`${url}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

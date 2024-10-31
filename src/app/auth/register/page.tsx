@@ -31,7 +31,7 @@ export default function Page() {
         <CardFooter className="flex flex-col space-y-2 text-center">
           <div className="text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link href="/auth/signin" className="text-blue-600 hover:underline">
+            <Link href="/auth/login" className="text-blue-600 hover:underline">
               Log in
             </Link>
           </div>

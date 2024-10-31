@@ -62,7 +62,7 @@ export default function EmailVerification() {
             duration: 5000,
             variant: "destructive",
           });
-          router.push("/auth/signin");
+          router.push("/auth/login");
         }
         /* eslint-disable */
       } catch (error) {
@@ -72,7 +72,7 @@ export default function EmailVerification() {
           duration: 5000,
           variant: "destructive",
         });
-        router.push("/auth/signin");
+        router.push("/auth/login");
       }
     });
   }
