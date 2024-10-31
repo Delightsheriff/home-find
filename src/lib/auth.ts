@@ -25,11 +25,14 @@ export const authOptions: NextAuthOptions = {
         if (res.ok && response.statusText === "success") {
           const { user, session }: { user: User; session: Session } =
             response.data;
+          const expiresAt = Date.now() + 15 * 60 * 1000;
+          console.log("Token expires at:", new Date(expiresAt).toISOString());
+
           return {
             ...user,
             accessToken: session.accessToken,
             refreshToken: session.refreshToken,
-            accessTokenExpires: Date.now() + 15 * 60 * 1000, // 15 minutes
+            accessTokenExpires: expiresAt, // 15 minutes
           };
         }
         return null; // Return null if the login failed
@@ -54,6 +57,12 @@ export const authOptions: NextAuthOptions = {
 
       // Refresh the access token if it has expired
       if (token.accessTokenExpires && Date.now() > token.accessTokenExpires) {
+        // console.log(
+        //   "Token expired at:",
+        //   new Date(token.accessTokenExpires).toISOString(),
+        // );
+        // console.log("Current time:", new Date(Date.now()).toISOString());
+        // console.log("Token Expired");
         const refreshedTokens = await refreshAccessToken(token);
         return {
           ...token,
@@ -100,7 +109,7 @@ async function refreshAccessToken(token: JWT) {
 
     if (!res.ok || refreshedTokens.statusText !== "success")
       throw refreshedTokens;
-
+    console.log("Token Refreshed successfully");
     return {
       accessToken: refreshedTokens.accessToken,
       accessTokenExpires: Date.now() + 15 * 60 * 1000, // New 15-minute expiration time
