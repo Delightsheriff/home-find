@@ -9,9 +9,11 @@ import { authOptions } from "@/lib/auth";
 import { navItems, UserRole } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);
+  if (!session) redirect("/auth/login");
   const userRole = session?.user?.role as UserRole | undefined;
   const filteredNavItems = navItems.filter(
     (item) => !userRole || item.roles.includes(userRole),

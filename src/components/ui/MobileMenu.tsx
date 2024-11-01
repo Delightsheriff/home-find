@@ -63,18 +63,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ session }) => {
             ) : (
               <>
                 <Link
-                  href="/auth/signup"
+                  href="/auth/register"
                   className="btn-primary w-full py-4 text-lg font-medium text-center"
                   onClick={() => setOpen(false)}
                 >
-                  Sign Up
+                  Register
                 </Link>
                 <Link
-                  href="/auth/signin"
+                  href="/auth/login"
                   className="btn-primary w-full py-4 text-lg font-medium text-center"
                   onClick={() => setOpen(false)}
                 >
-                  Sign In
+                  Login
                 </Link>
               </>
             )}

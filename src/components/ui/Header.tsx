@@ -35,16 +35,16 @@ async function Header() {
               ) : (
                 <>
                   <Link
-                    href="/auth/signup"
+                    href="/auth/register"
                     className="btn-primary hidden md:block"
                   >
-                    Sign Up
+                    Register
                   </Link>
                   <Link
-                    href="/auth/signin"
+                    href="/auth/login"
                     className="btn-primary hidden md:block"
                   >
-                    Sign In
+                    Login
                   </Link>
                 </>
               )}

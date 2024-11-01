@@ -21,11 +21,18 @@ export async function POST(req: Request) {
   };
 
   // Update the JWT
-  await authOptions.callbacks?.jwt({
-    token: newToken,
-    user,
-    trigger: "update",
-  });
+  // Check if jwt callback exists and call it with all required parameters
+  if (authOptions.callbacks?.jwt) {
+    await authOptions.callbacks.jwt({
+      token: newToken,
+      user,
+      trigger: "update",
+      account: null, // Required parameter
+      profile: undefined, // Required parameter
+      isNewUser: false, // Required parameter
+      session: undefined, // Required parameter
+    });
+  }
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
