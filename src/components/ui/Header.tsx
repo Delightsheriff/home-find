@@ -15,7 +15,13 @@ async function Header() {
           <div className="flex justify-between items-center py-2 px-3 sm:px-4 lg:px-8 ">
             <div className="logo_container">
               <Link href="/">
-                <Image src="/logo.svg" alt="Logo" width={60} height={60} />
+                <Image
+                  src="/logo.svg"
+                  alt="Logo"
+                  priority
+                  width={60}
+                  height={60}
+                />
               </Link>
             </div>
 
