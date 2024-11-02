@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +13,6 @@ interface ProfileDetailsProps {
 }
 
 export default function ProfileDetails({ user }: ProfileDetailsProps) {
-  const { update } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: user?.firstName || "",
@@ -34,7 +32,6 @@ export default function ProfileDetails({ user }: ProfileDetailsProps) {
       if (!result.success) {
         throw new Error(result.error);
       }
-      await update({ user: result.data.user });
       toast({
         title: "Profile updated",
         description: "Your profile has been updated successfully.",

@@ -43,25 +43,10 @@ export const authOptions: NextAuthOptions = {
     async jwt({
       token,
       user,
-      trigger,
-    }: // profile,
-    // isNewUser,
-    // session,
-    {
+    }: {
       token: JWT & { accessTokenExpires?: number };
       user: User;
-      trigger?: "update" | "signIn" | "signUp";
-      // profile?: Profile;
-      // isNewUser?: boolean;
-      // session?: any;
     }) {
-      if (trigger === "update" && user) {
-        // Update the token with the new user data
-        return {
-          ...token,
-          user,
-        };
-      }
       // Initial sign-in
       if (user) {
         token.user = user;
