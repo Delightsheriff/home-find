@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/ui/footer";
-import Header from "@/components/ui/Header";
 import { Toaster } from "@/components/ui/toaster";
+import AuthProvider from "@/components/providers/AuthProvider";
+import HeaderWrapper from "@/components/ui/HeaderWrapper";
 
 export const metadata: Metadata = {
   title: {
@@ -36,10 +37,12 @@ export default async function RootLayout({
           flex-col
           min-h-dvh scroll-smooth`}
       >
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Toaster />
-        <Footer />
+        <AuthProvider>
+          <HeaderWrapper />
+          <main className="flex-grow">{children}</main>
+          <Toaster />
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

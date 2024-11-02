@@ -138,7 +138,7 @@ export default function SignInForm() {
         </Link>
       </div>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Signing in..." : "Sign In"}
+        {isSubmitting ? "Logging In..." : "Login"}
       </Button>
     </form>
   );

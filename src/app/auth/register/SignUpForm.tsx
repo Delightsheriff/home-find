@@ -172,7 +172,7 @@ export default function SignUpForm() {
         )}
       </div>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Signing up..." : "Sign Up"}
+        {isSubmitting ? "Registering..." : "Register"}
       </Button>
     </form>
   );

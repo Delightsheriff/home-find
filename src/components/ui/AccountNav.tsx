@@ -1,12 +1,17 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
 import { navItems, UserRole } from "@/types/types";
 import SignOutButton from "./SignOutButton";
+import { useSession } from "next-auth/react";
+import Spinner from "./Spinner";
 
-export default async function AccountNav() {
-  const session = await getServerSession(authOptions);
+export default function AccountNav() {
+  const { data: session, status } = useSession();
+  // console.log(session);
+  if (status === "loading") {
+    return <Spinner />; // You can replace this with a spinner or skeleton
+  }
   const userRole = session?.user?.role as UserRole | undefined;
   const username = `${session?.user?.firstName || ""} ${
     session?.user?.lastName || ""

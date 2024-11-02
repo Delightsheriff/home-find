@@ -1,15 +1,17 @@
 "use client";
-import AccountNav from "@/components/ui/AccountNav";
 import { SessionProvider } from "next-auth/react";
+import AccountNav from "@/components/ui/AccountNav";
 import { ReactNode } from "react";
+import { Session } from "next-auth";
 
 interface LayoutProps {
   children: ReactNode;
+  session: Session | null; // Add session prop
 }
 
-export default function AccountLayout({ children }: LayoutProps) {
+export default function AccountLayout({ children, session }: LayoutProps) {
   return (
-    <SessionProvider>
+    <SessionProvider session={session}>
       <div className="flex flex-col min-h-screen bg-background">
         <header className="top-0 z-10 bg-background border-b border-border md:sticky">
           <AccountNav />
@@ -22,17 +24,3 @@ export default function AccountLayout({ children }: LayoutProps) {
     </SessionProvider>
   );
 }
-
-// app/(protected)/account/layout.tsx
-
-// export default function AccountLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//       <main>
-//         {children}
-//       </main>
-//   );
-// }

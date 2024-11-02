@@ -20,7 +20,7 @@ export default function Page() {
     <div className="container bg-deep_orange-50 mx-auto flex items-center justify-center min-h-screen px-4 ">
       <Card className="w-full max-w-md mx-auto bg-white-A700">
         <CardHeader>
-          <CardTitle>Sign Up</CardTitle>
+          <CardTitle>Register</CardTitle>
           <CardDescription>
             Create an account to buy, sell, or rent properties
           </CardDescription>
@@ -36,7 +36,7 @@ export default function Page() {
             </Link>
           </div>
           <p className="text-xs text-muted-foreground">
-            By signing up, you agree to our Terms of Service and Privacy Policy
+            By registering, you agree to our Terms of Service and Privacy Policy
           </p>
         </CardFooter>
       </Card>

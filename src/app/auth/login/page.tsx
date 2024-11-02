@@ -21,9 +21,9 @@ export default function SignInPage() {
     <div className="container bg-deep_orange-50 mx-auto flex items-center justify-center min-h-screen px-4 ">
       <Card className="w-full max-w-md bg-white-A700 ">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
+          <CardTitle className="text-2xl font-bold">Login</CardTitle>
           <CardDescription>
-            Enter your email and password to sign in to your account
+            Enter your email and password to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -32,8 +32,11 @@ export default function SignInPage() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-gray-600">
             Don&apos;t have an account?{" "}
-            <Link href="/auth/signup" className="text-blue-600 hover:underline">
-              Sign up
+            <Link
+              href="/auth/register"
+              className="text-blue-600 hover:underline"
+            >
+              Register
             </Link>
           </p>
         </CardFooter>
