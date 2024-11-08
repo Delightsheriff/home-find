@@ -32,38 +32,40 @@ export default function Page() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Real Estate Blog</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogPosts.map((post) => (
-          <div
-            key={post.id}
-            className="border rounded-lg overflow-hidden shadow-md"
-          >
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-gray-600 mb-4">{post.excerpt}</p>
-              <div className="flex items-center text-sm text-gray-500 mb-4">
-                <Calendar className="mr-2" size={16} />
-                <span>{post.date}</span>
+    <div className="w-full bg-deep_orange-50">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6">Real Estate Blog</h1>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post) => (
+            <div
+              key={post.id}
+              className="border rounded-lg overflow-hidden shadow-md bg-white-A700"
+            >
+              <div className="p-6 ">
+                <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                <div className="flex items-center text-sm text-gray-500 mb-4">
+                  <Calendar className="mr-2" size={16} />
+                  <span>{post.date}</span>
+                </div>
+                <Link
+                  href={`/blog/${post.id}`}
+                  className="text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  Read More →
+                </Link>
               </div>
-              <Link
-                href={`/blog/${post.id}`}
-                className="text-blue-600 hover:text-blue-800 transition-colors"
-              >
-                Read More →
-              </Link>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 text-center">
-        <Link
-          href="/blog"
-          className="inline-block btn-primary text-white px-6 py-2 rounded-lg  transition-colors"
-        >
-          View All Posts
-        </Link>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link
+            href="/blog"
+            className="inline-block btn-primary text-white px-6 py-2 rounded-lg  transition-colors"
+          >
+            View All Posts
+          </Link>
+        </div>
       </div>
     </div>
   );
