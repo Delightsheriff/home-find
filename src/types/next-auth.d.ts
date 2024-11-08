@@ -1,3 +1,4 @@
+//next-auth.d.ts
 import "next-auth";
 // Type declarations for next-auth
 declare module "next-auth" {
