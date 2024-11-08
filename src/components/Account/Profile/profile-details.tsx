@@ -34,15 +34,6 @@ export default function ProfileDetails({ user }: ProfileDetailsProps) {
       if (!result.success) {
         throw new Error(result.error);
       }
-      console.log("result", result);
-      console.log("session", session);
-      // await updateSession({
-      //   ...session,
-      //   user: {
-      //     ...session?.user,
-      //     ...result.data.user,
-      //   },
-      // });
 
       toast({
         title: "Profile updated",
