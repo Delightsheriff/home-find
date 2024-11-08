@@ -60,6 +60,8 @@ export const authOptions: NextAuthOptions = {
     }) {
       //Handles session update
       if (trigger === "update") {
+        console.log("Session update", user);
+        console.log("Session update", token);
         return {
           ...token,
           user,
@@ -68,41 +70,38 @@ export const authOptions: NextAuthOptions = {
 
       // Initial sign-in
       if (user) {
-        return {
-          ...token,
-          user,
-          accessToken: user.accessToken,
-          refreshToken: user.refreshToken,
-          accessTokenExpires: user.accessTokenExpires,
-        };
+        token.user = user;
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
+        token.accessTokenExpires = user.accessTokenExpires;
       }
       // Return previous token if the access token has not expired
       if (token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
-        return token;
+        const refreshedTokens = await refreshAccessToken(token);
+        return {
+          ...token,
+          ...refreshedTokens,
+        };
       }
 
       // Refresh the token if expired
-      return await refreshAccessToken(token);
+      return token;
     },
     async session({
       session,
       token,
     }: {
       session: Session;
-      token: JWT & { user?: User; error?: string };
+      token: JWT & { user?: User };
     }) {
-      if (token.error) {
-        // Handle token refresh error
-        throw new Error("RefreshAccessTokenError");
-      }
       // Attach the access and refresh tokens to the session
-      return {
-        ...session,
-        user: token.user || session.user,
-        accessToken: token.accessToken as string,
-        refreshToken: token.refreshToken as string,
-        error: token.error,
-      };
+      if (token.user) {
+        session.user = token.user;
+      }
+      session.accessToken = token.accessToken as string;
+      session.refreshToken = token.refreshToken as string;
+      session.user = token.user as User;
+      return session;
     },
   },
   session: {

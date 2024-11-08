@@ -1,3 +1,4 @@
+import Landlords from "@/components/Home/Landlords";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
@@ -14,6 +15,9 @@ export default async function Page() {
             <p>{session?.user?.firstName}</p>
           </h1>
         </div>
+      </section>
+      <section className="w-full  py-6 px-4 sm:px-4 lg:px-8 bg-deep_orange-50">
+        <Landlords />
       </section>
     </main>
   );

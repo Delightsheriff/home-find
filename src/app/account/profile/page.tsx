@@ -1,4 +1,5 @@
 import ProfileHeader from "@/components/Account/Profile/profile-header";
+// import ProfileImage from "@/components/Account/Profile/profile-image";
 import ProfileDetails from "@/components/Account/Profile/profile-details";
 import { Card, CardContent } from "@/components/ui/card";
 import { authOptions } from "@/lib/auth";

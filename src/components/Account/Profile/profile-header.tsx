@@ -10,7 +10,8 @@ export default function ProfileHeader({ user }: ProfileHeaderProps) {
     <CardHeader>
       <CardTitle>Profile Page</CardTitle>
       <h1 className="font-bold text-xl">
-        Welcome <span className="uppercase font-bold">{user.firstName} 👋</span>
+        Welcome{" "}
+        <span className="uppercase font-bold">{user?.firstName} 👋</span>
       </h1>
       <CardDescription>Manage your account settings</CardDescription>
     </CardHeader>

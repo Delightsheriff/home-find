@@ -7,12 +7,14 @@ import { Label } from "@/components/ui/label";
 import { updateProfile } from "@/lib/user";
 import { toast } from "@/hooks/use-toast";
 import { User } from "@/types";
+import { useSession } from "next-auth/react";
 
 interface ProfileDetailsProps {
   user: Partial<User>;
 }
 
 export default function ProfileDetails({ user }: ProfileDetailsProps) {
+  const { update: updateSession, data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: user?.firstName || "",
@@ -32,6 +34,16 @@ export default function ProfileDetails({ user }: ProfileDetailsProps) {
       if (!result.success) {
         throw new Error(result.error);
       }
+      console.log("result", result);
+      console.log("session", session);
+      // await updateSession({
+      //   ...session,
+      //   user: {
+      //     ...session?.user,
+      //     ...result.data.user,
+      //   },
+      // });
+
       toast({
         title: "Profile updated",
         description: "Your profile has been updated successfully.",
@@ -75,7 +87,7 @@ export default function ProfileDetails({ user }: ProfileDetailsProps) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" value={user.email} disabled />
+        <Input id="email" value={user?.email} disabled />
       </div>
       <Button onClick={handleUpdate} disabled={isLoading}>
         {isLoading ? "Updating..." : "Update Profile"}

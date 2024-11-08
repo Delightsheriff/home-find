@@ -101,7 +101,6 @@ export async function updateProfile(data: ProfileUpdateData) {
     }
 
     const updatedData = await response.json();
-    console.log(updatedData);
     return { success: true, data: updatedData };
   } catch (error) {
     if (error instanceof z.ZodError) {
