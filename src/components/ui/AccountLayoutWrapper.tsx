@@ -10,7 +10,6 @@ interface LayoutProps {
 
 export default async function AccountLayoutWrapper({ children }: LayoutProps) {
   const session = await getServerSession(authOptions); // Fetch the session on the server
-  console.log("session", session);
 
   return <AccountLayout session={session}>{children}</AccountLayout>;
 }

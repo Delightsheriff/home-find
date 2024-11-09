@@ -13,7 +13,6 @@ import { redirect } from "next/navigation";
 
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);
-  console.log(session);
   if (!session) redirect("/auth/login");
   const userRole = session?.user?.role as UserRole | undefined;
   const filteredNavItems = navItems.filter(

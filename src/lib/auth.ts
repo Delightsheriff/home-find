@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
       token,
       user,
       trigger,
+      session,
     }: {
       token: JWT & {
         user?: User;
@@ -63,27 +64,17 @@ export const authOptions: NextAuthOptions = {
       };
       user?: User;
       trigger?: "signUp" | "signIn" | "update";
+      session?: Session;
     }) {
       //Handles session update
-      if (trigger === "update") {
-        console.log("Session update", user);
-        console.log("Session update", token);
+      if (trigger === "update" && session) {
         return {
           ...token,
-          user: {
-            ...token.user,
-            ...user,
-          },
+          ...session.user,
+          // user: session.user,
         };
       }
 
-      // Initial sign-in
-      // if (user) {
-      //   token.user = user;
-      //   token.accessToken = user.accessToken;
-      //   token.refreshToken = user.refreshToken;
-      //   token.accessTokenExpires = user.accessTokenExpires;
-      // }
       if (user) {
         return {
           ...token,
@@ -119,12 +110,9 @@ export const authOptions: NextAuthOptions = {
       };
     }) {
       // Attach the access and refresh tokens to the session
-      if (token.user) {
-        session.user = token.user;
-      }
-      // session.accessToken = token.accessToken as string;
-      // session.refreshToken = token.refreshToken as string;
-      // session.user = token.user as User;
+
+      session.user = token.user || session.user;
+
       session.accessToken = token.accessToken || "";
       session.refreshToken = token.refreshToken || "";
 

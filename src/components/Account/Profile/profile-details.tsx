@@ -8,19 +8,20 @@ import { updateProfile } from "@/lib/user";
 import { toast } from "@/hooks/use-toast";
 import { User } from "@/types";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface ProfileDetailsProps {
   user: Partial<User>;
 }
 
 export default function ProfileDetails({ user }: ProfileDetailsProps) {
+  const router = useRouter();
   const { update: updateSession, data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
   });
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -34,6 +35,14 @@ export default function ProfileDetails({ user }: ProfileDetailsProps) {
       if (!result.success) {
         throw new Error(result.error);
       }
+      await updateSession({
+        ...session,
+        user: {
+          ...session?.user,
+          ...result.data,
+        },
+      });
+      router.refresh();
 
       toast({
         title: "Profile updated",
