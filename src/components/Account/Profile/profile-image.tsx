@@ -4,15 +4,19 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader2 } from "lucide-react";
-import { uploadImage } from "@/lib/actions";
+import { uploadProfileImage } from "@/lib/user";
 import { toast } from "@/hooks/use-toast";
 import { User } from "@/types";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface ProfileImageProps {
   user: Partial<User>;
 }
 
 export default function ProfileImage({ user }: ProfileImageProps) {
+  const router = useRouter();
+  const { update: updateSession, data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -31,17 +35,25 @@ export default function ProfileImage({ user }: ProfileImageProps) {
 
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("user", JSON.stringify(user));
 
-      const result = await uploadImage(formData);
+      const result = await uploadProfileImage(formData);
 
       if (!result.success) {
         throw new Error(result.error);
       }
+      await updateSession({
+        ...session,
+        user: {
+          ...session?.user,
+          ...result.data,
+        },
+      });
+      router.refresh();
 
       toast({
         title: "Profile picture updated",
         description: "Your new profile picture has been set successfully.",
+        variant: "success",
       });
     } catch (error) {
       console.log(error);
@@ -65,7 +77,7 @@ export default function ProfileImage({ user }: ProfileImageProps) {
           </div>
         ) : (
           <AvatarImage
-            src={user.profilePicture}
+            src={user.profilePictureUrl}
             alt={`${user.firstName} ${user.lastName}`}
           />
         )}

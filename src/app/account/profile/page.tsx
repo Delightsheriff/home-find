@@ -1,5 +1,5 @@
 import ProfileHeader from "@/components/Account/Profile/profile-header";
-// import ProfileImage from "@/components/Account/Profile/profile-image";
+import ProfileImage from "@/components/Account/Profile/profile-image";
 import ProfileDetails from "@/components/Account/Profile/profile-details";
 import { Card, CardContent } from "@/components/ui/card";
 import { authOptions } from "@/lib/auth";
@@ -17,7 +17,7 @@ export default async function Page() {
     <Card className="w-full max-w-4xl mx-auto p-4">
       <ProfileHeader user={user} />
       <CardContent className="space-y-6">
-        {/* <ProfileImage user={user} /> */}
+        <ProfileImage user={user} />
         <ProfileDetails user={user} />
       </CardContent>
     </Card>

@@ -4,7 +4,7 @@ export interface User {
   email: string;
   password?: string;
   role: string;
-  profilePicture?: string;
+  profilePictureUrl?: string;
   isEmailVerified: boolean;
   emailVerificationToken: string | null;
   emailVerificationExpiresAt: Date | null;

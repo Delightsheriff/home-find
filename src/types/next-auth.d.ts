@@ -8,7 +8,7 @@ declare module "next-auth" {
       firstName: string;
       lastName: string;
       email: string;
-      profilePicture?: string;
+      profilePictureUrl?: string;
       role: string;
       provider: string;
       isEmailVerified: boolean;
@@ -24,7 +24,7 @@ declare module "next-auth" {
     firstName: string;
     lastName: string;
     email: string;
-    profilePicture?: string;
+    profilePictureUrl?: string;
     role: string;
     provider: string;
     isEmailVerified: boolean;
