@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function Landlords() {
   const images = [
@@ -11,7 +12,7 @@ export default function Landlords() {
   ];
 
   return (
-    <div className="container mx-auto px-4 md:px-6 ">
+    <div className="container mx-auto px-4 py-4 md:px-6 ">
       <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
         <Card className="flex flex-col justify-center space-y-4">
           <CardContent className="space-y-4">
@@ -27,9 +28,9 @@ export default function Landlords() {
             </p>
           </CardContent>
           <CardFooter>
-            <Link href="/auth/register" className="btn-primary">
-              Get Started
-            </Link>
+            <Button size="lg" asChild>
+              <Link href="/auth/register">Get Started</Link>
+            </Button>
           </CardFooter>
         </Card>
         <div className="grid gap-4 sm:grid-cols-2">

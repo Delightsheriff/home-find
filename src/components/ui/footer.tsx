@@ -62,13 +62,12 @@ const footerSections: FooterSection[] = [
 const FooterSection: React.FC<FooterSection> = ({ title, links }) => (
   <div className="grid gap-4">
     <h4 className="text-lg font-semibold">{title}</h4>
-    <nav className="grid gap-2">
+    <nav aria-label={`${title} links`} className="grid gap-2">
       {links.map((link) => (
         <Link
           key={link.label}
           href={link.href}
-          className="text-muted-foreground hover:underline"
-          prefetch={false}
+          className="text-muted-foreground hover:underline focus:outline-none focus:ring-2 focus:ring-primary"
         >
           {link.label}
         </Link>
@@ -77,22 +76,25 @@ const FooterSection: React.FC<FooterSection> = ({ title, links }) => (
   </div>
 );
 
-const Footer: React.FC = () => (
-  <footer className="w-full py-6 ">
-    <div className="container mx-auto">
-      <div className="px-3 sm:px-4 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {footerSections.map((section) => (
-            <FooterSection key={section.title} {...section} />
-          ))}
-        </div>
-        <div className="text-sm text-center mt-5">
-          &copy; {new Date().getFullYear()} Delight Amadi-Sheriff. All rights
-          reserved.
+const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="w-full py-6 bg-background">
+      <div className="container mx-auto">
+        <div className="px-3 sm:px-4 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            {footerSections.map((section) => (
+              <FooterSection key={section.title} {...section} />
+            ))}
+          </div>
+          <div className="text-sm text-center mt-8 text-muted-foreground">
+            &copy; {currentYear} Delight Amadi-Sheriff. All rights reserved.
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default Footer;
