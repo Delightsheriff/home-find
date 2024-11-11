@@ -58,6 +58,11 @@ export enum PropertyType {
   COMMERCIAL = "commercial",
   INDUSTRIAL = "industrial",
 }
+export enum Purpose {
+  Rent = "rent",
+  // Sell = "sell",
+  // Lease = "lease",
+}
 
 export enum ResidentialSubType {
   BoysQuarters = "boysQuarters",
@@ -85,4 +90,10 @@ export enum CommercialSubType {
 export enum IndustrialSubType {
   Warehouse = "warehouse",
   Factory = "factory",
+}
+
+export enum Currency {
+  NGN = "NGN",
+  USD = "USD",
+  EUR = "EUR",
 }

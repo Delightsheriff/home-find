@@ -18,7 +18,7 @@
 /.next/
 /out/
 
-/test.txt
+/test.ts
 # production
 /build
 

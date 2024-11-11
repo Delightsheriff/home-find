@@ -52,7 +52,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ session }) => {
               </Link>
             ))}
 
-            {session ? (
+            {session !== null ? (
               <Link
                 href="/account"
                 className="btn-primary w-full py-4 text-lg font-medium text-center"

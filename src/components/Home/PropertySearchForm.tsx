@@ -16,6 +16,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
@@ -135,6 +136,7 @@ export const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
               Search Results
             </DialogTitle>
           </DialogHeader>
+          <DialogDescription></DialogDescription>
           <ScrollArea className="h-[500px] w-full rounded-md border p-4">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {searchResults.length > 0 ? (

@@ -26,7 +26,7 @@ function Header({ session }: { session: Session | null }) {
             <NavLinks />
 
             <div className="flex items-center space-x-2">
-              {session ? (
+              {session !== null ? (
                 <Link href="/account" className="hidden md:block btn-primary ">
                   Account
                 </Link>

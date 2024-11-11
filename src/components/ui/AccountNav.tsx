@@ -4,13 +4,10 @@ import Link from "next/link";
 import { navItems, UserRole } from "@/types/types";
 import SignOutButton from "./SignOutButton";
 import { useSession } from "next-auth/react";
-import Spinner from "./Spinner";
 
 export default function AccountNav() {
-  const { data: session, status } = useSession();
-  if (status === "loading") {
-    return <Spinner />; // You can replace this with a spinner or skeleton
-  }
+  const { data: session } = useSession();
+
   const userRole = session?.user?.role as UserRole | undefined;
 
   const filteredNavItems = navItems.filter(

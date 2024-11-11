@@ -25,7 +25,7 @@ const montserrat = Montserrat({
  * @param {React.ReactNode} props.children - The child components to render.
  * @returns {JSX.Element} The rendered root layout component.
  */
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -40,9 +40,9 @@ export default async function RootLayout({
         <AuthProvider>
           <HeaderWrapper />
           <main className="flex-grow">{children}</main>
-          <Toaster />
           <Footer />
         </AuthProvider>
+        <Toaster />
       </body>
     </html>
   );

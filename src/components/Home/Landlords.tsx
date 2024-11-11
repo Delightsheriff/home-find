@@ -14,7 +14,7 @@ export default function Landlords() {
   return (
     <div className="container mx-auto px-4 py-4 md:px-6 ">
       <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
-        <Card className="flex flex-col justify-center space-y-4">
+        <Card className="flex flex-col pt-6 justify-center space-y-4">
           <CardContent className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Effortlessly List Your Properties and Find Your Ideal Tenants
