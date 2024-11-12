@@ -35,7 +35,6 @@ export interface IProperty {
   bathrooms: number;
   address: string;
   stateCapital: string;
-  localGovernment: string;
   isVerified: boolean;
   size: number;
   toilets: number;

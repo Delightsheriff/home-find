@@ -51,3 +51,7 @@ export const priceRanges = [
   { label: "₦200,000 - ₦300,000", value: "200k-300k", max: 300000 },
   { label: "₦300,000+", value: "300k+", max: Infinity },
 ] as const;
+
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-US").format(price);
+};

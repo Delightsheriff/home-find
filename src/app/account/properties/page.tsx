@@ -1,5 +1,5 @@
-import PropertyDialog from "@/components/Property/PropertyDialog";
-import PropertyListings from "@/components/Property/PropertyListings";
+import PropertyDialog from "@/components/Account/Property/PropertyDialog";
+import PropertyListings from "@/components/Account/Property/PropertyListings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Page() {

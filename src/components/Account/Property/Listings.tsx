@@ -1,4 +1,5 @@
 "use client";
+import { PropertyCard } from "@/components/Property/PropertyCard";
 import { IProperty } from "@/interface/property";
 import React, { useState } from "react";
 
@@ -34,7 +35,7 @@ const Listings: React.FC<ListingsProps> = ({ properties }) => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentProperties.map((property) => (
-                <div key={property._id}>{property.title}</div>
+                <PropertyCard key={property._id} property={property} />
               ))}
             </div>
           )}

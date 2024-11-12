@@ -164,7 +164,7 @@ export const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
                         <div className="flex items-center space-x-2 text-sm text-gray-500">
                           <MapPin className="w-4 h-4 flex-shrink-0" />
                           <span className="line-clamp-1">
-                            {property.address}, {property.localGovernment},{" "}
+                            {property.address}
                             {property.stateCapital}
                           </span>
                         </div>
