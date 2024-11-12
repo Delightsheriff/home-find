@@ -32,16 +32,8 @@ import PropertyDetails from "@/components/Property/PropertyDetails";
 import { fetchProperties, getProperty } from "@/lib/property";
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
-import React from "react";
 
-// Type for the page props
-type PageProps = {
-  params: {
-    propertyId: string;
-  };
-};
-
-// Define the generateStaticParams function
+// Remove explicit type definition and let Next.js infer the types
 export async function generateStaticParams() {
   noStore();
   const properties = await fetchProperties();
@@ -51,12 +43,14 @@ export async function generateStaticParams() {
   }));
 }
 
-// Page component with correct typing
-const Page = async ({ params }: PageProps) => {
+// Use Next.js's default page props type inference
+export default async function Page({
+  params,
+}: {
+  params: { propertyId: string };
+}) {
   noStore();
   const property = await getProperty(params.propertyId);
   if (!property) notFound();
   return <PropertyDetails property={property} />;
-};
-
-export default Page;
+}
