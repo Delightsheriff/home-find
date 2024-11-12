@@ -5,7 +5,7 @@ import { Mail, CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { ResendVerificationEmailState } from "@/lib/definitions";
-import { resendVerificationEmail } from "./actions";
+import { resendVerificationEmail } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 
 function SubmitButton({ isPending }: { isPending: boolean }) {
