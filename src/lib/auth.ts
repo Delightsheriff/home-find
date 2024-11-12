@@ -71,7 +71,8 @@ export const authOptions: NextAuthOptions = {
         return {
           ...token,
           ...session.user,
-          // user: session.user,
+          accessToken: session.accessToken, // Add this
+          refreshToken: session.refreshToken,
         };
       }
 
@@ -86,7 +87,7 @@ export const authOptions: NextAuthOptions = {
       }
 
       // Return previous token if the access token has not expired
-      if (token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
+      if (token.accessTokenExpires && Date.now() >= token.accessTokenExpires) {
         const refreshedTokens = await refreshAccessToken(token);
         return {
           ...token,
@@ -169,11 +170,11 @@ async function refreshAccessToken(token: JWT) {
     if (refreshedTokens.statusText !== "success") {
       throw new Error(refreshedTokens.message || "Token refresh failed");
     }
-
+    const newExpiry = Date.now() + TOKEN_EXPIRY_TIME;
     return {
       ...token,
       accessToken: refreshedTokens.accessToken,
-      accessTokenExpires: Date.now() + TOKEN_EXPIRY_TIME,
+      accessTokenExpires: newExpiry,
       refreshToken: token.refreshToken, // Preserve existing refresh token
       user: token.user, // Preserve user data
     };
