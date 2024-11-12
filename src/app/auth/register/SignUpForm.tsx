@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SignupFormData, SignupFormSchema } from "@/lib/definitions";
 import { toast } from "@/hooks/use-toast";
-import { signUp } from "./actions";
+import { signUp } from "@/lib/actions";
 
 const InputField: React.FC<{
   id: keyof SignupFormData;
