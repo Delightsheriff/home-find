@@ -33,7 +33,9 @@ import { fetchProperties, getProperty } from "@/lib/property";
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-// Remove explicit type definition and let Next.js infer the types
+// Import Next.js page types
+import { Metadata } from "next";
+
 export async function generateStaticParams() {
   noStore();
   const properties = await fetchProperties();
@@ -43,14 +45,28 @@ export async function generateStaticParams() {
   }));
 }
 
-// Use Next.js's default page props type inference
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: { propertyId: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   noStore();
   const property = await getProperty(params.propertyId);
   if (!property) notFound();
   return <PropertyDetails property={property} />;
+}
+
+// Optionally add metadata
+export async function generateMetadata({
+  params,
+}: {
+  params: { propertyId: string };
+}): Promise<Metadata> {
+  const property = await getProperty(params.propertyId);
+
+  return {
+    title: property?.title || "Property Details",
+  };
 }
